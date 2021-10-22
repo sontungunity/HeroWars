@@ -254,7 +254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerHero: {fileID: 2048002059}
   towerEnemy: {fileID: 844846619}
-  level: 0
+  hero: {fileID: 0}
+  level: 1
 --- !u!1 &844846616
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +353,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   render: {fileID: 844846617}
   prefFloor: {fileID: 6642834816317479680, guid: 92064a56ad1f6244091f038cdfb993af, type: 3}
-  plusHight: 1
+  startHight: 1
+  space: 0.2
   lstPrefFloor: []
 --- !u!1 &913008829
 GameObject:
@@ -613,7 +615,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   render: {fileID: 2048002057}
   prefFloor: {fileID: 3654469240120119646, guid: 53ece8a58b1fc324d8e3e70c2e323f9b, type: 3}
-  plusHight: 1
+  startHight: 1
+  space: 0.2
   lstPrefFloor: []
 --- !u!1001 &8885187439495276341
 PrefabInstance:

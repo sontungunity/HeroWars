@@ -4,12 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class InGameManager : Singleton<InGameManager>
+public class GamePlayManager : Singleton<GamePlayManager>
 {
     [SerializeField] private TowerCS towerHero;
     [SerializeField] private TowerCS towerEnemy;
+    [SerializeField] private HeroMain hero;
+    public HeroMain Hero {
+        get {
+            return this.hero;
+        }
+        set {
+            if(this.hero!=null) {
+                hero.Recycle();
+            }
+            this.hero = value;
+        }
+    }
     public int level;
     private LevelData levelData;
+    
 
     private void Start()
     {

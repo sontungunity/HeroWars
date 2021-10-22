@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6015166116938508837}
   - component: {fileID: 6015166116938508839}
   - component: {fileID: 6015166116938508838}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 6015166117869045142}
   - component: {fileID: 6015166117869045140}
   - component: {fileID: 6015166117869045143}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,8 +298,8 @@ MonoBehaviour:
   charID: 0
   txtPower: {fileID: 6015166116938508838}
   power: 0
-  floor: {fileID: 0}
   hr_Tourch: {fileID: 6015166117869045140}
+  Floor: {fileID: 0}
 --- !u!114 &6015166117869045140
 MonoBehaviour:
   m_ObjectHideFlags: 0
