@@ -33,4 +33,17 @@ public class GamePlayManager : Singleton<GamePlayManager>
         towerHero.Show(levelData.FloorHero);
         towerEnemy.Show(levelData.LstFloorData.ToArray());
     }
+
+    public bool CheckWin() {
+        bool result = towerEnemy.LstFloor.Count == 1;
+        if(result) {
+            SetUpWin();
+
+        }
+        return result;
+    }
+
+    private void SetUpWin() {
+        hero.Win();
+    }
 }

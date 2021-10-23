@@ -3,24 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Gafu.Base.Events;
+using System;
 
 public class FloorEnemy : FloorBase {
     [SerializeField] private List<Transform> lstPositionChar;
     [SerializeField] private BoxCollider2D collder2D;
     [SerializeField] private GameObject glow;
     public List<CharBase> lstCharBase = new List<CharBase>();
+    public GameObject Glow => glow;
+    public CharBase CharFace {
+        get {
+            if(lstCharBase == null || lstCharBase.Count == 0) {
+                return null;
+            } else {
+                return lstCharBase[lstCharBase.Count - 1];
+            }
+        }
+    }
     private void Start() {
 
     }
 
-    public override void Show(FloorData fData) {
-        SetUpDefault();
+    public override void Show(FloorData fData,TowerCS tower) {
+        base.Show(fData, tower);
         for(int i = 0; i < fData.LstCharData.Count(); i++) {
             var charData = fData.LstCharData.ElementAt(i);
             var character = DataManager.Instance.GetCharByCharID(charData.CharID).Spawn(transform);
             character.transform.position = lstPositionChar[i].position;
-            character.Show(charData.Power);
-            lstCharBase.Add(character);
+            character.Show(charData.Power, this);
+            lstCharBase.Add(character as CharCompare);
         }
     }
 
@@ -33,28 +44,35 @@ public class FloorEnemy : FloorBase {
         glow.SetActive(over);
     }
 
-    public override void HeroComeIn() {
+    //public override void HeroComeIn(HeroMain hero,Action callback) {
+    //    this.HeroComeIn
+    //    
+    //}
+    public override void HeroComeIn(HeroMain hero, Action callBack) {
         collder2D.enabled = false;
+        base.HeroComeIn(hero, callBack);
     }
 
     public override void HeroComeOut() {
-        collder2D.enabled = true;
+        base.HeroComeOut();
+        Tower.Remove(this);
+        this.Recycle();
+    }
+
+    public void RemoveChase(CharBase charB) {
+        lstCharBase.Remove(charB);
     }
 
     private void OnMouseEnter() {
-        Debug.Log("Mouser_Enter");
         glow.SetActive(true);
-        GamePlayManager.Instance.Hero.Cur_FloorOver = this;
     }
 
     private void OnMouseExit() {
-        Debug.Log("Mouser_Exit");
         glow.SetActive(false);
-        GamePlayManager.Instance.Hero.Cur_FloorOver = null;
     }
 
     private void OnMouseUp() {
         glow.SetActive(false);
-        GamePlayManager.Instance.Hero.HandleFloor(this);
+        EventDispatcher.Dispatch<EventKey.SelectFloor>(new EventKey.SelectFloor(this));
     }
 }

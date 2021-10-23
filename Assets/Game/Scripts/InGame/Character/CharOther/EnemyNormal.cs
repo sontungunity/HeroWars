@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class EnemyNormal : CharBase
+public class EnemyNormal : CharCompare
 {
 
 }

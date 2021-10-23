@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public static class Extentions {
-
+    public static void CheckKillTween(this Tween tween,bool OnComplate = false) {
+        if(tween!=null) {
+            tween.Kill(OnComplate);
+        }
+    }
 }
 
 public enum CharID {

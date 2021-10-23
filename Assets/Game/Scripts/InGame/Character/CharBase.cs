@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class CharBase : MonoBehaviour {
     [SerializeField] private CharID charID;
-    [SerializeField] private TextMeshPro txtPower;
-
-    [Header("Cur_Info")]
-    [SerializeField]private int power;
+    [SerializeField] private TextNumber txtPower;
+    [SerializeField] private int power;
+    public TextNumber TxtPower => txtPower;
     public CharID CharID => charID;
     public int Power => power;
-    public virtual void Show(int power = 0) {
+    public FloorBase Floor;
+    public virtual void Show(int power = 0, FloorBase floor = null) {
         this.power = power;
-        txtPower.text = power.ToString();
+        this.Floor = floor;
+        txtPower.Show(power);
     }
 }
