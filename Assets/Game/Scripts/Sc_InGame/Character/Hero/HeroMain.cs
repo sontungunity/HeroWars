@@ -26,6 +26,10 @@ public class HeroMain : CharBase {
         EventDispatcher.RemoveListener<EventKey.SelectFloor>(EvtSelectFloor);
     }
 
+    private void OnDestroy() {
+        EventDispatcher.RemoveListener<EventKey.SelectFloor>(EvtSelectFloor);
+    }
+
     private void Start() {
         status = Status.IDEL;
         txtStatus.text = "IDEL";

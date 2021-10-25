@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : Singleton<UIManager>
+public class FrameManager : Singleton<FrameManager>
 {
     [SerializeField] private FrameBase firstFrame;
     [SerializeField] private List<FrameBase> lstFrameCollectes;
@@ -15,7 +15,9 @@ public class UIManager : Singleton<UIManager>
     }
 
     private void Start() {
-        
+        FrameBase instance = Instantiate(firstFrame, transform);
+        instance.Init(this);
+        lstFrameReleases.Add(instance);
     }
 
     public F Push<F>(Action<F> pushOption = null, Action onCompleted = null) where F: FrameBase {

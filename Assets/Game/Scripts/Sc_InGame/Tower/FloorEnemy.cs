@@ -56,7 +56,14 @@ public class FloorEnemy : FloorBase {
     public override void HeroComeOut() {
         base.HeroComeOut();
         Tower.Remove(this);
-        this.Recycle();
+    }
+
+    public override void Clear() {
+        base.Clear();
+        foreach(var charE in lstCharBase) {
+            charE.Recycle();
+        }
+        lstCharBase.Clear();
     }
 
     public void RemoveChase(CharBase charB) {

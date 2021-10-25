@@ -12,12 +12,13 @@ public class FloorBase : MonoBehaviour {
     public float HightFloor => boundFloor.size.y;
     protected Transform HeroPosition => heroPosition;
     private Tween tween;
+    private Coroutine coroutine;
     public virtual void SetUpHeroPosition(HeroMain hero) {
         hero.transform.position = heroPosition.position;
         Debug.Log("Finish hero setPosition");
     }
 
-    public virtual void Show(FloorData fData,TowerCS tower) {
+    public virtual void Show(FloorData fData, TowerCS tower) {
         this.FloorData = fData;
         this.Tower = tower;
         SetUpDefault();
@@ -27,13 +28,21 @@ public class FloorBase : MonoBehaviour {
 
     }
 
-    public virtual void HeroComeIn(HeroMain hero, Action  callBack) {
+    public virtual void HeroComeIn(HeroMain hero, Action callBack) {
         this.Hero = hero;
+        Hero.transform.parent = transform;
         SetUpHeroPosition(Hero);
+        StartCoroutine(WaitingTowerBuld(callBack));
+    }
+
+    IEnumerator WaitingTowerBuld(Action callBack) {
+        yield return new WaitUntil(() => Tower.STT == TowerCS.Status.IDLE);
         callBack?.Invoke();
+        yield return null;
     }
 
     public virtual void HeroComeOut() {
+        this.Hero.transform.parent = null;
         this.Hero = null;
     }
 
@@ -41,8 +50,15 @@ public class FloorBase : MonoBehaviour {
 
     }
 
-    public void Move(float hightFloor) {
-        tween = transform.DOLocalMoveY(transform.localPosition.y + hightFloor, 0.5f).SetEase(Ease.OutBack);
+    public virtual void Clear() {
+        if(this.Hero != null) {
+            this.Hero.Recycle();
+            this.Hero = null;
+        }
+    }
+
+    public void Move(float hightFloor, float timeMove = 0.5f) {
+        tween = transform.DOLocalMoveY(transform.localPosition.y + hightFloor, timeMove).SetEase(Ease.OutBack);
     }
 
     private void OnDisable() {

@@ -13,8 +13,8 @@ public class FrameBase : MonoBehaviour
     [SerializeField] protected UIAnimation showAnimation;
     [SerializeField] protected UIAnimation hideAnimation;
 
-    private UIManager uiManager;
-    public void Init(UIManager uiManager) {
+    private FrameManager uiManager;
+    public void Init(FrameManager uiManager) {
         this.uiManager = uiManager;
     }
 
