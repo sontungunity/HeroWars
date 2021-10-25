@@ -37,6 +37,9 @@ public class HeroMain : CharBase {
     }
 
     private void EvtSelectFloor(EventKey.SelectFloor evt) {
+        if(status != Status.IDEL) {
+            return;
+        }
         Debug.Log("Hero_Telepost");
         status = Status.ACTION;
         txtStatus.text = "ACTION";
@@ -66,7 +69,7 @@ public class HeroMain : CharBase {
             HandleCharFace(floorE, () => {
                 status = Status.IDEL;
                 txtStatus.text = "IDEL";
-                GamePlayManager.Instance.CheckWin(); 
+                GamePlayManager.Instance.CheckWin();
             });
         }
     }
@@ -89,24 +92,19 @@ public class HeroMain : CharBase {
 
     // ActionDetail: [Action_Attack,]
     public void ActionDetail(CharBase charG, Action callBack) {
-        if(charG is CharCompare charCompare) {
-            if(charCompare.ActionType == ActionType.Attack) {
-                Action_Attack(charCompare, callBack);
-            }
-
+        if(charG is EnemyNormal charCompare) {
+            Action_Attack(charCompare, callBack);
         }
     }
 
 
-    public void Action_Attack(CharCompare charCompare, Action callback = null) {
+    public void Action_Attack(EnemyNormal charCompare, Action callback = null) {
         tween = display.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.2f).OnComplete(() => {
             tween = display.DOScale(Vector3.one, 0.5f).OnComplete(() => {
                 if(Cur_Power > charCompare.Power) {
-                    charCompare.CompareLose(this);
-                    callback?.Invoke();
+                    charCompare.CompareLose(this, callback);
                 } else {
-                    charCompare.CompareWin(this);
-                    callback?.Invoke();
+                    charCompare.CompareWin(this, callback);
                 }
 
             });
@@ -126,9 +124,14 @@ public class HeroMain : CharBase {
         txtStatus.text = "Win";
     }
 
+    public void Loser() {
+        status = Status.DIE;
+        txtStatus.text = "Die";
+    }
+
 
     private void OnLoser() {
-
+        GamePlayManager.Instance.SetUpLoser();
     }
     #endregion
 
@@ -137,10 +140,5 @@ public class HeroMain : CharBase {
         ACTION,
         WIN,
         DIE
-    }
-
-    public enum ActionType {
-        Attack,
-        UnLock,
     }
 }

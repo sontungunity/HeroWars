@@ -15,5 +15,10 @@ public class CharBase : MonoBehaviour {
         this.power = power;
         this.Floor = floor;
         txtPower.Show(power);
+        SetUpDefault();
+    }
+
+    public virtual void SetUpDefault() {
+
     }
 }

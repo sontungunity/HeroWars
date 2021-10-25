@@ -28,6 +28,9 @@ public class FrameBase : MonoBehaviour
 
     }
 
+    public void Hide() {
+        gameObject.SetActive(false);
+    }
 
 
 }

@@ -27,4 +27,8 @@ public static class EventKey {
             this.Floor = floor;
         }
     }
+
+    public struct CoinChange : IEventArgs {
+
+    }
 }

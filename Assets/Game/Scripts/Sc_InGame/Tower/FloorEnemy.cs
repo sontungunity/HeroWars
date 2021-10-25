@@ -31,7 +31,7 @@ public class FloorEnemy : FloorBase {
             var character = DataManager.Instance.GetCharByCharID(charData.CharID).Spawn(transform);
             character.transform.position = lstPositionChar[i].position;
             character.Show(charData.Power, this);
-            lstCharBase.Add(character as CharCompare);
+            lstCharBase.Add(character as EnemyNormal);
         }
     }
 

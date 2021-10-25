@@ -4,11 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DataManager : Singleton<DataManager> {
+    private const string PLAYER_KEY = "playerdata";
     private const string LEVELDATA_PATH = "LevelData/Level_";
     [SerializeField] private List<CharBase> lstCharBase;
-    
-    private void Start() {
 
+    private PlayerData playerData;
+
+    public PlayerData PlayerData {
+        get {
+            if(playerData != null) {
+                return playerData;
+            } else {
+                LoadData();
+                return playerData;
+            }
+        }
+    }
+    private void Start() {
+        LoadData();
     }
 
     public LevelData GetLevelDataByLevel(int level) {
@@ -34,10 +47,16 @@ public class DataManager : Singleton<DataManager> {
 
 
     public void SaveData() {
-
+        PlayerPrefs.SetString(PLAYER_KEY, JsonUtility.ToJson(playerData));
     }
 
     public void LoadData() {
-
+        string jsonResult = PlayerPrefs.GetString(PLAYER_KEY);
+        if(string.IsNullOrEmpty(jsonResult)) {
+            playerData = new PlayerData();
+            SaveData();
+        } else {
+            playerData = JsonUtility.FromJson<PlayerData>(jsonResult);
+        }
     }
 }

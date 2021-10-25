@@ -21,15 +21,16 @@ public class TowerCS : MonoBehaviour {
     private Tween tween;
     [SerializeField] private Status status;
     public Status STT => status;
+    private Vector2 root_SizeTower;
     private void Awake() {
-        
+        root_SizeTower = render.size;
     }
     private void Init() {
 
     }
 
     public void Show(params FloorData[] arryFloor) {
-        lstFloor.Clear();
+        ClearTower();
         lstFloorData = arryFloor.ToList();
         render.size += new Vector2(0, arryFloor.Length * HightFloor);
         for(int i = 0; i < lstFloorData.Count; i++) {
@@ -95,8 +96,10 @@ public class TowerCS : MonoBehaviour {
     public void ClearTower() {
         foreach(var floor in lstFloor) {
             floor.Clear();
+            floor.Recycle();
         }
         lstFloor.Clear();
+        render.size = root_SizeTower;
     }
     public enum Status {
         IDLE,

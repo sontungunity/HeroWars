@@ -11,6 +11,7 @@ public class TextNumber : MonoBehaviour {
     private Tween tween;
     public void Show(int number, bool smooth = false, float time = 0.5f, Action callback = null) {
         if(smooth) {
+            tween.CheckKillTween(true);
             tween = DOTween.To(() => cur_int,
                 (value) => {
                     txtNumber.text = value.ToString();

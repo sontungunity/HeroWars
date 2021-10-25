@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 using Gafu.InGame.Singleton;
+using DG.Tweening;
 
 public class SceneLoader : Singleton<SceneLoader> {
     public const string SCENE_LOGO = "Logo";
@@ -17,18 +18,46 @@ public class SceneLoader : Singleton<SceneLoader> {
     private Coroutine loadingCoroutine;
 
     public bool IsLoading => loadingCoroutine != null;
+
+    private void Start() {
+        fade.gameObject.SetActive(false);
+        Color color = Color.black;
+        color.a = 0;
+        fade.color = color; 
+    }
+
     public void LoadSceneAsyn(string sceneName, Action onFadeIn = null, Action onFadeOut = null) {
         if(IsLoading) {
             Debug.LogError("[SceneLoader] More than one scene loader was started");
             return;
         }
+        fade.gameObject.SetActive(true);
+        fade.DOColor(Color.black, 0.5f).OnComplete(() => {
+            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+            StartCoroutine(LoadScene(sceneName));
+        });
 
-        loadingCoroutine = StartCoroutine(DoLoadSceneAsyn(
-            () => SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single)
-            , duration
-            , onFadeIn
-            , onFadeOut));
+        //loadingCoroutine = StartCoroutine(DoLoadSceneAsyn(
+        //    () => SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single)
+        //    , duration
+        //    , onFadeIn
+        //    , onFadeOut));
+
     }
+
+    IEnumerator LoadScene(string sceneName) {
+        yield return new WaitUntil(() => string.Compare(sceneName, SceneManager.GetActiveScene().name) == 0);
+        TurnOffFade();
+    }
+
+    private void TurnOffFade() {
+        fade.gameObject.SetActive(false);
+        Color color = Color.black;
+        color.a = 0;
+        fade.color = color;
+    }
+
+
 
     public void LoadSceneAsyn(int sceneIndex, Action onFadeIn = null, Action onFadeOut = null) {
         if(IsLoading) {

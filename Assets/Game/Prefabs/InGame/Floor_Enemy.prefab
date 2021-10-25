@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6948720710333791584}
   m_Layer: 0
-  m_Name: E_Position_II
+  m_Name: E_Position_I
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,11 +269,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boundFloor: {fileID: 2571144289956740083}
   heroPosition: {fileID: 6948720711067646051}
+  Hero: {fileID: 0}
+  Tower: {fileID: 0}
+  FloorData:
+    lstCharData: []
   lstPositionChar:
-  - {fileID: 6948720712000260578}
   - {fileID: 6948720710333791584}
+  - {fileID: 6948720712000260578}
   collder2D: {fileID: 6948720710959499647}
   glow: {fileID: 757106441173032058}
+  lstCharBase: []
 --- !u!1 &6948720711067646050
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6948720712000260578}
   m_Layer: 0
-  m_Name: E_Position_I
+  m_Name: E_Position_II
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -328,7 +333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6948720712000260589}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6948720712169873569}
