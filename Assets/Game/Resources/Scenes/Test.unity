@@ -338,7 +338,7 @@ MonoBehaviour:
   towerEnemy: {fileID: 844846619}
   camInGame: {fileID: 519420030}
   hero: {fileID: 0}
-  level: 1
+  level: 9
 --- !u!1 &844846616
 GameObject:
   m_ObjectHideFlags: 0

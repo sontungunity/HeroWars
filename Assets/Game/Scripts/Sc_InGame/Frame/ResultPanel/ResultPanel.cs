@@ -4,19 +4,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ResultPanel : FrameBase
-{
+public class ResultPanel : FrameBase {
     [Header("PAGE")]
     [SerializeField] private TextMeshProUGUI txt_Result;
     [SerializeField] private Button btn_Home;
     [SerializeField] private Button btn_AddCoin;
     [SerializeField] private Button btn_Next;
+    [SerializeField] private Button btn_SkipLvl;
+    [SerializeField] private Button btn_Replay;
     [SerializeField] private DisplayObjects obj_BtnStyle; // 0. Win, 1. Loser
-    
+
 
     private void Awake() {
-        btn_Home.onClick.AddListener(()=> SceneLoader.Instance.LoadSceneAsyn(SceneLoader.SCENE_HOME));
-        btn_AddCoin.onClick.AddListener(()=> {
+        btn_Home.onClick.AddListener(() => SceneLoader.Instance.LoadSceneAsyn(SceneLoader.SCENE_HOME));
+        btn_AddCoin.onClick.AddListener(() => {
             btn_AddCoin.gameObject.SetActive(false);
             DataManager.Instance.PlayerData.AddCoin(100);
         });

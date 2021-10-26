@@ -33,9 +33,10 @@ public class TowerCS : MonoBehaviour {
         ClearTower();
         lstFloorData = arryFloor.ToList();
         render.size += new Vector2(0, arryFloor.Length * HightFloor);
+        int countLst = lstFloorData.Count;
         for(int i = 0; i < lstFloorData.Count; i++) {
             FloorBase floor = prefFloor.Spawn(transform);
-            floor.transform.localPosition = new Vector2(0, startHight + i * HightFloor);
+            floor.transform.localPosition = new Vector2(0, startHight + (countLst -i -1) * HightFloor);
             floor.Show(lstFloorData[i], this);
             lstFloor.Add(floor);
         }
@@ -48,13 +49,13 @@ public class TowerCS : MonoBehaviour {
 
     public void Remove(FloorEnemy floorEnemy) {
         status = Status.BUILDING;
-        bool flag_higher = false;
+        bool flag_higher = true;
         foreach(var fl in lstFloor) {
             if(flag_higher) {
                 fl.Move(-HightFloor, timeRemoveFloor);
             }
             if(fl.GetInstanceID() == floorEnemy.GetInstanceID()) {
-                flag_higher = true;
+                flag_higher = false;
             }
         }
         float hightTowerAfter = render.size.y - HightFloor;
@@ -94,6 +95,7 @@ public class TowerCS : MonoBehaviour {
     }
 
     public void ClearTower() {
+        tween.CheckKillTween();
         foreach(var floor in lstFloor) {
             floor.Clear();
             floor.Recycle();
@@ -104,5 +106,13 @@ public class TowerCS : MonoBehaviour {
     public enum Status {
         IDLE,
         BUILDING,
+    }
+
+    private void OnDestroy() {
+        tween.CheckKillTween();
+    }
+
+    private void OnDisable() {
+        tween.CheckKillTween();
     }
 }

@@ -6,6 +6,9 @@ public class FloorHero : FloorBase
 {
     public override void Show(FloorData fData,TowerCS tower) {
         base.Show(fData, tower);
+        if(fData == null) {
+            return;
+        }
         foreach(CharData cData in fData.LstCharData) {
             if(cData.CharID == CharID.HERO) {
                 var hero = DataManager.Instance.GetCharByCharID(CharID.HERO).Spawn(transform) as HeroMain;

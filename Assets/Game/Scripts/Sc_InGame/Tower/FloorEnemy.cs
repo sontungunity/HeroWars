@@ -24,14 +24,14 @@ public class FloorEnemy : FloorBase {
 
     }
 
-    public override void Show(FloorData fData,TowerCS tower) {
+    public override void Show(FloorData fData, TowerCS tower) {
         base.Show(fData, tower);
         for(int i = 0; i < fData.LstCharData.Count(); i++) {
             var charData = fData.LstCharData.ElementAt(i);
             var character = DataManager.Instance.GetCharByCharID(charData.CharID).Spawn(transform);
             character.transform.position = lstPositionChar[i].position;
             character.Show(charData.Power, this);
-            lstCharBase.Add(character as EnemyNormal);
+            lstCharBase.Add(character);
         }
     }
 
@@ -44,10 +44,6 @@ public class FloorEnemy : FloorBase {
         glow.SetActive(over);
     }
 
-    //public override void HeroComeIn(HeroMain hero,Action callback) {
-    //    this.HeroComeIn
-    //    
-    //}
     public override void HeroComeIn(HeroMain hero, Action callBack) {
         collder2D.enabled = false;
         base.HeroComeIn(hero, callBack);
@@ -55,11 +51,13 @@ public class FloorEnemy : FloorBase {
 
     public override void HeroComeOut() {
         base.HeroComeOut();
+        gameObject.SetActive(false);
         Tower.Remove(this);
     }
 
     public override void Clear() {
         base.Clear();
+        gameObject.SetActive(true);
         foreach(var charE in lstCharBase) {
             charE.Recycle();
         }

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorHero:
     lstCharData:
-    - charID: 0
+    - charID: 1
       power: 5
   lstFloorData:
   - lstCharData:
-    - charID: 1
+    - charID: 2
       power: 3
   - lstCharData:
-    - charID: 1
+    - charID: 2
       power: 5

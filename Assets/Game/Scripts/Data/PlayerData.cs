@@ -9,7 +9,7 @@ public class PlayerData
     public int Level = 0;
     public int Coin = 0;
     public bool UnLockSkin = false;
-    public bool RemoveAds = true;
+    public bool RemoveAds = false;
 
     public void AddCoin(int value) {
         Coin += value;
@@ -17,8 +17,8 @@ public class PlayerData
     }
 
     public void PassLevel(int level) {
-        if(level > this.Level) {
-            this.Level = level;
+        if(level >= this.Level) {
+            this.Level = level+1;
         }
     }
 }

@@ -39,7 +39,7 @@ public class GamePlayManager : Singleton<GamePlayManager> {
     public void PlayGame() {
         SetUpDefault();
         if(GameManager.Instance != null) {
-            level = GameManager.Instance.Cur_Level;
+            level = DataManager.Instance.PlayerData.Level;
         }
         levelData = DataManager.Instance.GetLevelDataByLevel(level);
         towerHero.Show(levelData.FloorHero);
@@ -61,7 +61,7 @@ public class GamePlayManager : Singleton<GamePlayManager> {
         camInGame.SetupDefault();
     }
 
-    private void SetUpWin() {
+    public void SetUpWin() {
         DataManager.Instance.PlayerData.PassLevel(level);
         hero.Win();
         camInGame.Room(hero.transform);

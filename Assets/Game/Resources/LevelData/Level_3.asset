@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43b11eac7e7d4214c89eee6f533c28c3, type: 3}
-  m_Name: Level_2
+  m_Name: Level_3
   m_EditorClassIdentifier: 
   floorHero:
     lstCharData:
@@ -18,8 +18,13 @@ MonoBehaviour:
       power: 5
   lstFloorData:
   - lstCharData:
-    - charID: 2
-      power: 5
+    - charID: 4
+      power: 0
+    - charID: 3
+      power: -22
   - lstCharData:
     - charID: 2
-      power: 3
+      power: 12
+  - lstCharData:
+    - charID: 5
+      power: 10

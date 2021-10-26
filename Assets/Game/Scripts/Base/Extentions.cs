@@ -12,6 +12,7 @@ public static class Extentions {
 }
 
 public enum CharID {
+    None,
     HERO,
     E_NORMAL,
     WOONDEN_POLES, // Cột gỗ
@@ -21,7 +22,7 @@ public enum CharID {
     WOLF,   //Sói
     IRON_MACE, // chùy sắt
     E_ARCHERY, //Cung
-    E_TURTLE  // Rùa
+    TURTLE  // Rùa
 }
 
 public enum ItemID {
