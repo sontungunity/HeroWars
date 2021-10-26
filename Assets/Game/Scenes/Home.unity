@@ -236,7 +236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstFrame: {fileID: 875774999150160661, guid: 7438281fea54c164c9de37a6d5c6b44b, type: 3}
-  lstFrameCollectes: []
+  lstFrameCollectes:
+  - {fileID: 4057018061164676332, guid: 55c689d0a09bac446b487a4525a54a44, type: 3}
 --- !u!1 &725886963
 GameObject:
   m_ObjectHideFlags: 0

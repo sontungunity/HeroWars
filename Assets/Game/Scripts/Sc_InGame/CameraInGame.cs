@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class CameraInGame : MonoBehaviour {
     [SerializeField] private Camera cam;
+    [SerializeField] private float sizeTargetWith = 2.8125f; // 5/1920*1080;
     [SerializeField] private float orthoSizeRoom = 3f;
     [SerializeField] private float timeTarget = 0.75f;
     private Vector3 root_Position;
@@ -15,6 +16,15 @@ public class CameraInGame : MonoBehaviour {
     private void Awake() {
         root_Position = transform.position;
         root_Size = cam.orthographicSize;
+    }
+
+    private void Start() {
+        float cur_With = root_Size / Screen.height * Screen.width;
+        if(cur_With<sizeTargetWith) {
+            float sizeTarget = sizeTargetWith / Screen.width * Screen.height;
+            root_Size = sizeTarget;
+            cam.orthographicSize = root_Size;
+        }
     }
 
     public void Room(Transform target, float size, float timeTarget = 1f) {

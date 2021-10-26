@@ -7,7 +7,8 @@ public class SceneTools {
     #region Editor Scenes Menu
     public static string[] ScenePaths = { "Assets/Game/Scenes/Logo.unity",
                                           "Assets/Game/Scenes/Home.unity",
-                                          "Assets/Game/Scenes/Game.unity" };
+                                          "Assets/Game/Scenes/Game.unity",
+                                          "Assets/Game/Scenes/Edit.unity",};
 
     [MenuItem("Game/Play %K", false, 0)]
     private static void PlayGame() {
@@ -28,6 +29,11 @@ public class SceneTools {
     [MenuItem("Game/Scenes/Game Scene %G", false, 1)]
     private static void OpenGamePlayScene() {
         UnityEditor.SceneManagement.EditorSceneManager.OpenScene(ScenePaths[2]);
+    }
+
+    [MenuItem("Game/Scenes/Game Edit %E", false, 1)]
+    private static void OpenEditScene() {
+        UnityEditor.SceneManagement.EditorSceneManager.OpenScene(ScenePaths[3]);
     }
     #endregion
 }

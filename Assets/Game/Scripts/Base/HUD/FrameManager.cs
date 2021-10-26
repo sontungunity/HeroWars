@@ -17,6 +17,7 @@ public class FrameManager : Singleton<FrameManager>
     private void Start() {
         FrameBase instance = Instantiate(firstFrame, transform);
         instance.Init(this);
+        instance.Show();
         lstFrameReleases.Add(instance);
     }
 

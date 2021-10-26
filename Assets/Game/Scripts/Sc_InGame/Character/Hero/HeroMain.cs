@@ -9,6 +9,8 @@ public class HeroMain : CharBase {
     [Header("Info")]
     [SerializeField] private HeroHand rightHand;
     [SerializeField] private HeroHand leftHand;
+    [SerializeField] private List<CharID> lstItem = new List<CharID>();
+    //[SerializeField] private List<>
     public HeroHand RightHand => rightHand;
     public HeroHand LeftHand => leftHand;
     [Space]
@@ -47,6 +49,8 @@ public class HeroMain : CharBase {
         base.SetUpDefault();
         rightHand.Clear();
         leftHand.Clear();
+        lstItem.Clear();
+        status = Status.IDEL;
     }
     private void EvtSelectFloor(EventKey.SelectFloor evt) {
         if(status != Status.IDEL) {
@@ -113,15 +117,21 @@ public class HeroMain : CharBase {
             Action_Harmful(harmful, callBack);
         } else if(charG is CharCodition codition) {
             Action_Condition(codition, callBack);
+        }else if(charG is CharItem item) {
+            Action_Item(item,callBack);
         }
     }
 
     private void Action_Condition(CharCodition condition, Action callBack) {
         MoveTarget(condition.transform.localPosition, () => {
-            status = Status.WIN;
-            txtStatus.text = "IDEL";
-            GamePlayManager.Instance.SetUpWin();
-            //callBack?.Invoke();
+            if(condition.GetWin(this) == true) {
+                status = Status.WIN;
+                txtStatus.text = "IDEL";
+                GamePlayManager.Instance.SetUpWin();
+            } else {
+                callBack?.Invoke();
+            }
+            //
         });
     }
 
@@ -153,6 +163,14 @@ public class HeroMain : CharBase {
         });
     }
 
+    private void Action_Item(CharItem item, Action callback = null) {
+        MoveTarget(item.transform.localPosition, () => {
+            item.GetItem();
+            lstItem.Add(item.CharID);
+            callback?.Invoke();
+        });
+    }
+
     public void MoveTarget(Vector3 target, Action callback = null) {
         tween = transform.DOLocalMove(target + spaceTarget, 1f).OnComplete(() => {
             callback?.Invoke();
@@ -161,10 +179,18 @@ public class HeroMain : CharBase {
 
     public void AddPower(int power, Action callback = null) {
         Cur_Power += power;
+        if(Cur_Power <= 0) {
+            Cur_Power = 0;
+            status = Status.DIE;
+        }
         TxtPower.Show(Cur_Power, true, callback: callback);
         if(Cur_Power <= 0) {
             status = Status.DIE;
         }
+    }
+
+    public bool Exist(CharID id) {
+        return lstItem.Exists(x=>id == x);
     }
 
     public void Win() {

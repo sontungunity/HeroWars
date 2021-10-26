@@ -270,6 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txt_Amount: {fileID: 6282140179623480593}
+  btn_Shop: {fileID: 6282140180371695209}
 --- !u!1 &6282140180995344503
 GameObject:
   m_ObjectHideFlags: 0

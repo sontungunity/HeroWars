@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Gafu.Base.Events;
 
-public class HomeFrame : FrameBase
-{
+public class HomeFrame : FrameBase {
     [Space]
     [Header("InFrame")]
     [SerializeField] private Button btn_Start;

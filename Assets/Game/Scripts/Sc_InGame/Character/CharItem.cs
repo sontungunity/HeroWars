@@ -1,14 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharCodition : CharBase
+public class CharItem : CharBase
 {
-    [SerializeField] private string description;
-
-    private string Description => description;
-
     public override void Show(int power = 0, FloorBase floor = null) {
         SetUpDefault();
         this.power = power;
@@ -16,7 +11,14 @@ public class CharCodition : CharBase
         //txtPower.Show(power);
     }
 
-    public void GetWin(HeroMain heroMain,Action callback) {
-        
+    public void GetItem() {
+        transform.localScale = Vector3.zero;
+        this.Recycle();
+    }
+
+    public override void SetUpDefault() {
+        base.SetUpDefault();
+        transform.localScale = Vector3.one;
+
     }
 }

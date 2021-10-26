@@ -10,30 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43b11eac7e7d4214c89eee6f533c28c3, type: 3}
-  m_Name: Level_9
+  m_Name: Level_10
   m_EditorClassIdentifier: 
   floorHero:
     lstCharData:
     - charID: 1
-      power: 15
+      power: 16
   lstFloorData:
   - lstCharData:
-    - charID: 4
+    - charID: 12
       power: 0
-    - charID: 10
-      power: -99
+    - charID: 2
+      power: 35
   - lstCharData:
-    - charID: 8
-      power: 25
-    - charID: 3
-      power: -10
+    - charID: 11
+      power: 0
+    - charID: 2
+      power: 15
   - lstCharData:
-    - charID: 2
-      power: 25
-    - charID: 2
-      power: 5
-  - lstCharData:
-    - charID: 2
-      power: 40
-    - charID: 2
-      power: 20
+    - charID: 7
+      power: 10

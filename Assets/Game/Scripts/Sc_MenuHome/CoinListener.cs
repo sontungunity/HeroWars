@@ -4,12 +4,18 @@ using UnityEngine;
 using TMPro;
 using Gafu.Base.Events;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class CoinListener : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI txt_Amount;
+    [SerializeField] private Button btn_Shop;
     private int cur_int;
     private int coinAmount => DataManager.Instance.PlayerData.Coin;
     private Tween tween;
+
+    private void Awake() {
+        btn_Shop.onClick.AddListener(() => { FrameManager.Instance.Push<ShopFrame>(); });
+    }
     private void OnEnable() {
         EventDispatcher.AddListener<EventKey.CoinChange>(UpdateAmount);
     }

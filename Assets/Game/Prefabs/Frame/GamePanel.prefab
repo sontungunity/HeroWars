@@ -999,6 +999,10 @@ MonoBehaviour:
   hideAnimation: {fileID: 0}
   btn_Home: {fileID: 2426349246259283517}
   btn_Replay: {fileID: 2426349246391622094}
+  btn_Skip: {fileID: 2426349245494595555}
+  btn_Tower: {fileID: 2426349246112189921}
+  icon: {fileID: 0}
+  txt_Description: {fileID: 2426349246848474436}
 --- !u!1 &2426349246848474438
 GameObject:
   m_ObjectHideFlags: 0

@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
+  sizeTargetWith: 2.8125
   orthoSizeRoom: 2
   timeTarget: 0.75
 --- !u!20 &519420031
@@ -338,7 +339,8 @@ MonoBehaviour:
   towerEnemy: {fileID: 844846619}
   camInGame: {fileID: 519420030}
   hero: {fileID: 0}
-  level: 9
+  level: 10
+  IdCharCodition: 0
 --- !u!1 &844846616
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +601,8 @@ MonoBehaviour:
   firstFrame: {fileID: 2426349246847084559, guid: 55a3bf8b3110a074a8420b096a439142, type: 3}
   lstFrameCollectes:
   - {fileID: 2805038131150831613, guid: 2b222973f6f92eb4f94ed8673bdf917e, type: 3}
+  - {fileID: 4057018061164676332, guid: 55c689d0a09bac446b487a4525a54a44, type: 3}
+  - {fileID: 5744347653771146677, guid: d71585deb986ee842836115401512c39, type: 3}
 --- !u!4 &1645084737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4348249094713365584, guid: 41a9cbafbbb1b92408d98c805ba99340, type: 3}

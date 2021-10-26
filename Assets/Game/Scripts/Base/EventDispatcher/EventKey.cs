@@ -4,17 +4,17 @@ using UnityEngine;
 using Gafu.Base.Events;
 
 public static class EventKey {
-    public struct ItemChange : IEventArgs {
-        public ItemID ID;
-        public int CurAmount;
-        public int ChangeAmount;
+    //public struct ItemChange : IEventArgs {
+    //    public ItemID ID;
+    //    public int CurAmount;
+    //    public int ChangeAmount;
 
-        public ItemChange(ItemID ID, int CurAmount, int ChangeAmount) {
-            this.ID = ID;
-            this.CurAmount = CurAmount;
-            this.ChangeAmount = ChangeAmount;
-        }
-    }
+    //    public ItemChange(ItemID ID, int CurAmount, int ChangeAmount) {
+    //        this.ID = ID;
+    //        this.CurAmount = CurAmount;
+    //        this.ChangeAmount = ChangeAmount;
+    //    }
+    //}
 
     public struct LoadFinal : IEventArgs {
 
@@ -30,5 +30,15 @@ public static class EventKey {
 
     public struct CoinChange : IEventArgs {
 
+    }
+
+    public struct LoadLevel : IEventArgs {
+        public int level;
+        public CharID charCodition;
+
+        public LoadLevel(int level, CharID charCodition) {
+            this.level = level;
+            this.charCodition = charCodition;
+        }
     }
 }

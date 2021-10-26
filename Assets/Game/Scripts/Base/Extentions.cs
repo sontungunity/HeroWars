@@ -4,10 +4,18 @@ using UnityEngine;
 using DG.Tweening;
 
 public static class Extentions {
-    public static void CheckKillTween(this Tween tween,bool OnComplate = false) {
-        if(tween!=null) {
+    public static void CheckKillTween(this Tween tween, bool OnComplate = false) {
+        if(tween != null) {
             tween.Kill(OnComplate);
         }
+    }
+
+    public static CharBase GetCharPrefByCharID(this CharID id) {
+        return DataManager.Instance.GetCharByCharID(id);
+    }
+
+    public static CharBase GetCharPrefByCharData(this CharData charData) {
+        return DataManager.Instance.GetCharByCharID(charData.CharID);
     }
 }
 
@@ -22,7 +30,9 @@ public enum CharID {
     WOLF,   //Sói
     IRON_MACE, // chùy sắt
     E_ARCHERY, //Cung
-    TURTLE  // Rùa
+    TURTLE,
+    KEY,
+    CHEST// Rùa
 }
 
 public enum ItemID {

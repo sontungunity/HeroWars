@@ -556,6 +556,8 @@ MonoBehaviour:
   firstFrame: {fileID: 2426349246847084559, guid: 55a3bf8b3110a074a8420b096a439142, type: 3}
   lstFrameCollectes:
   - {fileID: 2805038131150831613, guid: 2b222973f6f92eb4f94ed8673bdf917e, type: 3}
+  - {fileID: 4057018061164676332, guid: 55c689d0a09bac446b487a4525a54a44, type: 3}
+  - {fileID: 5744347653771146677, guid: d71585deb986ee842836115401512c39, type: 3}
 --- !u!1 &1978211060
 GameObject:
   m_ObjectHideFlags: 0

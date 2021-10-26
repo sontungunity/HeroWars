@@ -17,6 +17,7 @@ public class Weapon : CharBase
         } else {
             heroMain.RightHand.Equitment(CharID, imgWeapon);
         }
+        this.Recycle();
         callback?.Invoke();
     }
 

@@ -22,6 +22,8 @@ public class ResultPanel : FrameBase {
             DataManager.Instance.PlayerData.AddCoin(100);
         });
         btn_Next.onClick.AddListener(NextLevel);
+        btn_SkipLvl.onClick.AddListener(SkipLevel);
+        btn_Replay.onClick.AddListener(Replay);
     }
 
     public void Show(bool result) {
@@ -30,10 +32,18 @@ public class ResultPanel : FrameBase {
         btn_AddCoin.gameObject.SetActive(result);
     }
 
-    public void NextLevel() {
-        GamePlayManager.Instance.level++;
-        GamePlayManager.Instance.PlayGame();
+    public void SkipLevel() {
         this.Hide();
-        FrameManager.Instance.Push<GamePanel>();
+        GamePlayManager.Instance.SkipLevel();
+    }
+
+    public void NextLevel() {
+        this.Hide();
+        GamePlayManager.Instance.NextLevel();
+    }
+
+    public void Replay() {
+        this.Hide();
+        GamePlayManager.Instance.Replay();
     }
 }
